@@ -1,7 +1,3 @@
-const difficulty = {
-  BEGINNER: 'beginner',
-  INTERMEDIATE: 'intermediate',
-  EXPERT: 'expert',
-};
+type difficulty = 'BEGINNER' | 'INTERMEDIATE' | 'EXPERT';
 
 export default difficulty;

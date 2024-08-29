@@ -40,8 +40,4 @@ export class ExcercisesService {
     }
     return this.excersiceRepository.save(exercise);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} excercise`;
-  }
 }

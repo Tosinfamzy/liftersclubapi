@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
+import { MUSCLE } from '../../helpers/muscle';
+import difficulty from 'src/helpers/difficulty';
 
 export class CreateExcerciseDto {
   @ApiProperty({ description: 'Name of the exercise' })
@@ -12,7 +14,7 @@ export class CreateExcerciseDto {
 
   @ApiProperty({ description: 'Muscle Group' })
   @IsString()
-  readonly muscle: string;
+  readonly muscle: MUSCLE;
 
   @ApiProperty({ description: 'Name of gym equipment' })
   @IsString()
@@ -20,7 +22,7 @@ export class CreateExcerciseDto {
 
   @ApiProperty({ description: 'Diffculty of exercise' })
   @IsString()
-  readonly difficulty: string;
+  readonly difficulty: difficulty;
 
   @ApiProperty({ description: 'How to perform exercise' })
   @IsString()

@@ -1,4 +1,4 @@
-export const MUSCLE_GROUP = {
+export const MUSCLE = {
   ABS: 'abs',
   ADDUCTORS: 'adductors',
   ABDUCTORS: 'adductors',
@@ -12,3 +12,4 @@ export const MUSCLE_GROUP = {
   TRAPS: 'traps',
   TRICEPS: 'triceps',
 };
+export type MUSCLE = (typeof MUSCLE)[keyof typeof MUSCLE];
