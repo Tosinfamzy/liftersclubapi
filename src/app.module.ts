@@ -16,7 +16,7 @@ import { ExcercisesModule } from './excercises/excercises.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true, // models will be loaded automatically
-      synchronize: process.env.NODE_ENV === 'development' ? true : false, // your entities will be synced with the database(recommended: disable in prod)
+      synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
     }),
     ExcercisesModule,
   ],

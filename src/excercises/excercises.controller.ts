@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Query } from '@nestjs/common';
 import { ExcercisesService } from './excercises.service';
 import { CreateExcerciseDto } from './dto/create-excercise.dto';
 import { UpdateExcerciseDto } from './dto/update-excercise.dto';
@@ -17,14 +17,14 @@ export class ExcercisesController {
     return this.excercisesService.findAll();
   }
 
-  @Get(':name')
-  findOne(@Param('name') name: string) {
+  @Get()
+  findOne(@Query('name') name: string) {
     return this.excercisesService.findOne(name);
   }
 
   @Patch(':name')
   update(
-    @Param('name') name: string,
+    @Query('name') name: string,
     @Body() updateExcerciseDto: UpdateExcerciseDto,
   ) {
     return this.excercisesService.update(name, updateExcerciseDto);

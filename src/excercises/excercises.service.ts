@@ -20,8 +20,14 @@ export class ExcercisesService {
     return this.excersiceRepository.find();
   }
 
-  findOne(exerciseName: string) {
-    return this.excersiceRepository.findOne({ where: { name: exerciseName } });
+  async findOne(exerciseName: string) {
+    const exercise = await this.excersiceRepository.findOne({
+      where: { name: exerciseName },
+    });
+    if (!exercise) {
+      throw new NotFoundException(`Exercise does not exist`);
+    }
+    return exercise;
   }
 
   async update(
