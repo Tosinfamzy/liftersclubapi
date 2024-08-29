@@ -13,7 +13,7 @@ import { ExcercisesModule } from './excercises/excercises.module';
       host: process.env.DB_HOST,
       port: +process.env.DB_PORT,
       username: process.env.DB_USERNAME,
-      password: process.env.PG_PASSWORD,
+      password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true, // models will be loaded automatically
       synchronize: process.env.NODE_ENV === 'development' ? true : false, // your entities will be synced with the database(recommended: disable in prod)

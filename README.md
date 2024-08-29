@@ -1,4 +1,5 @@
 # Lifters Club excersise REST api
+
 Built with Nest JS this is intended to use as a sort of exercise roladex
 
 ## Project setup
@@ -8,6 +9,12 @@ $ npm install
 ```
 
 ## Compile and run the project
+
+After filling out the `.env` and the `docker-compose.yml` files
+
+```bash
+$ docker-compose up
+```
 
 ```bash
 # development
