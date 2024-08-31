@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
 import { MUSCLE } from '../../helpers/muscle';
 import difficulty from 'src/helpers/difficulty';
+import { excerciseType } from 'src/helpers/excerciseType';
 
 export class CreateExcerciseDto {
   @ApiProperty({ description: 'Name of the exercise' })
@@ -10,7 +11,7 @@ export class CreateExcerciseDto {
 
   @ApiProperty({ description: 'type of exercise eg Cardio | strength etc' })
   @IsString()
-  readonly type: string;
+  readonly type: excerciseType;
 
   @ApiProperty({ description: 'Muscle Group' })
   @IsString()
