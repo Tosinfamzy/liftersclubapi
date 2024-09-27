@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ExcercisesModule } from './excercises/excercises.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { WorkoutModule } from './workout/workout.module';
 
 @Module({
   imports: [
@@ -19,6 +22,9 @@ import { ExcercisesModule } from './excercises/excercises.module';
       synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
     }),
     ExcercisesModule,
+    AuthModule,
+    UserModule,
+    WorkoutModule,
   ],
   controllers: [AppController],
   providers: [AppService],
