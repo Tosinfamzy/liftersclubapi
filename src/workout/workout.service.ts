@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Workout } from './entities/workout.entity';
+import { CreateWorkoutDto } from './dto/create-workout.dto';
 
 @Injectable()
 export class WorkoutService {
@@ -10,8 +11,11 @@ export class WorkoutService {
     private workoutRepository: Repository<Workout>,
   ) {}
 
-  async create(workoutData: Partial<Workout>): Promise<Workout> {
-    const workout = this.workoutRepository.create(workoutData);
+  async create(workoutData: CreateWorkoutDto): Promise<Workout> {
+    const workout = this.workoutRepository.create({
+      ...workoutData,
+      date: new Date(workoutData.date), // Convert string to Date object
+    });
     return this.workoutRepository.save(workout);
   }
 

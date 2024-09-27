@@ -2,16 +2,21 @@ import { Controller, Get, Post, Body, Patch, Query } from '@nestjs/common';
 import { ExcercisesService } from './excercises.service';
 import { CreateExcerciseDto } from './dto/create-excercise.dto';
 import { UpdateExcerciseDto } from './dto/update-excercise.dto';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('excercises')
 export class ExcercisesController {
   constructor(private readonly excercisesService: ExcercisesService) {}
 
+  @ApiOperation({ summary: 'Create a new exercise' })
+  @ApiResponse({ status: 201, description: 'Exercise created successfully' })
   @Post()
   create(@Body() createExcerciseDto: CreateExcerciseDto) {
     return this.excercisesService.create(createExcerciseDto);
   }
 
+  @ApiOperation({ summary: 'List all exercises' })
+  @ApiResponse({ status: 200, description: 'List of exercises' })
   @Get()
   findAll() {
     return this.excercisesService.findAll();
