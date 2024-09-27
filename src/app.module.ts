@@ -21,6 +21,11 @@ import { WorkoutModule } from './workout/workout.module';
       autoLoadEntities: true, // models will be loaded automatically
       synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
       ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
     }),
     ExcercisesModule,
     AuthModule,
