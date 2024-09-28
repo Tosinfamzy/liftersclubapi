@@ -4,7 +4,7 @@ import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
-@ApiTags('workouts')
+@ApiTags('Workouts')
 @Controller('workout')
 export class WorkoutController {
   constructor(private readonly workoutService: WorkoutService) {}
