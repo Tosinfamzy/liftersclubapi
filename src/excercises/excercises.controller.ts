@@ -38,7 +38,7 @@ export class ExcercisesController {
 
   @ApiOperation({ summary: 'Get exercise by name' })
   @ApiParam({ name: 'name', description: 'Name of the exercise' })
-  @Get('name/:name')
+  @Get('/:name')
   findByName(@Param('name') name: string) {
     return this.excercisesService.findByName(name);
   }
@@ -49,5 +49,11 @@ export class ExcercisesController {
     @Body() updateExcerciseDto: UpdateExcerciseDto,
   ) {
     return this.excercisesService.update(name, updateExcerciseDto);
+  }
+  @ApiOperation({ summary: 'Get exercises by muscle' })
+  @ApiParam({ name: 'muscle', description: 'Muscle group of the exercises' })
+  @Get('muscle/:muscle')
+  findByMuscle(@Param('muscle') muscle: string) {
+    return this.excercisesService.findByMuscle(muscle);
   }
 }

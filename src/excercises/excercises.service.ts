@@ -50,4 +50,8 @@ export class ExcercisesService {
   async findByName(name: string): Promise<Excercise> {
     return this.excersiceRepository.findOne({ where: { name } });
   }
+
+  async findByMuscle(muscle: string): Promise<Excercise[]> {
+    return this.excersiceRepository.find({ where: { muscle } });
+  }
 }
