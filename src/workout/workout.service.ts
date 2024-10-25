@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Workout } from './entities/workout.entity';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
 import { Excercise } from 'src/excercises/entities/excercise.entity';
+import { UpdateExcerciseDto } from 'src/excercises/dto/update-excercise.dto';
 
 @Injectable()
 export class WorkoutService {
@@ -51,5 +52,36 @@ export class WorkoutService {
 
     workout.exercises.push(exercise);
     return this.workoutRepository.save(workout);
+  }
+
+  async updateExerciseInWorkout(
+    workoutId: string,
+    exerciseId: number,
+    updateExcerciseDto: UpdateExcerciseDto,
+  ): Promise<Workout> {
+    const workout = await this.findOne(workoutId);
+    if (!workout) {
+      throw new NotFoundException(`Workout with ID ${workoutId} not found`);
+    }
+
+    const exercise = await this.excerciseRepository.findOne({
+      where: { id: exerciseId },
+    });
+    if (!exercise) {
+      throw new NotFoundException(`Exercise with ID ${exerciseId} not found`);
+    }
+
+    const updatedExercise = await this.excerciseRepository.preload({
+      id: exerciseId,
+      ...updateExcerciseDto,
+    });
+
+    if (!updatedExercise) {
+      throw new NotFoundException(`Exercise with ID ${exerciseId} not found`);
+    }
+
+    await this.excerciseRepository.save(updatedExercise);
+
+    return this.findOne(workoutId);
   }
 }

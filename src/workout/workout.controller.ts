@@ -1,8 +1,17 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { UpdateExcerciseDto } from 'src/excercises/dto/update-excercise.dto';
 
 @ApiTags('Workouts')
 @Controller('workout')
@@ -43,5 +52,22 @@ export class WorkoutController {
     @Param('exerciseId') exerciseId: number,
   ) {
     return this.workoutService.addExerciseToWorkout(workoutId, exerciseId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Update an exercise in a workout' })
+  @ApiParam({ name: 'workoutId', description: 'ID of the workout' })
+  @ApiParam({ name: 'exerciseId', description: 'ID of the exercise' })
+  @Patch(':workoutId/exercises/:exerciseId')
+  updateExerciseInWorkout(
+    @Param('workoutId') workoutId: string,
+    @Param('exerciseId') exerciseId: number,
+    @Body() updateExcerciseDto: UpdateExcerciseDto,
+  ) {
+    return this.workoutService.updateExerciseInWorkout(
+      workoutId,
+      exerciseId,
+      updateExcerciseDto,
+    );
   }
 }
