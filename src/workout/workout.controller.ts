@@ -32,4 +32,16 @@ export class WorkoutController {
   findAll() {
     return this.workoutService.findAll();
   }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Add an exercise to a workout' })
+  @ApiParam({ name: 'workoutId', description: 'ID of the workout' })
+  @ApiParam({ name: 'exerciseId', description: 'ID of the exercise' })
+  @Post(':workoutId/exercises/:exerciseId')
+  addExerciseToWorkout(
+    @Param('workoutId') workoutId: string,
+    @Param('exerciseId') exerciseId: number,
+  ) {
+    return this.workoutService.addExerciseToWorkout(workoutId, exerciseId);
+  }
 }

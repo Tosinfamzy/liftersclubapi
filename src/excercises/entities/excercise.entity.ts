@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Workout } from 'src/workout/entities/workout.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Excercise {
@@ -24,4 +25,7 @@ export class Excercise {
 
   @Column()
   video: string;
+
+  @ManyToMany(() => Workout, (workout) => workout.exercises)
+  workouts: Workout[];
 }
