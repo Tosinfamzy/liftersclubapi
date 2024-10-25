@@ -46,4 +46,8 @@ export class ExcercisesService {
     }
     return this.excersiceRepository.save(exercise);
   }
+
+  async findByName(name: string): Promise<Excercise> {
+    return this.excersiceRepository.findOne({ where: { name } });
+  }
 }

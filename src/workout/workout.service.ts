@@ -84,4 +84,25 @@ export class WorkoutService {
 
     return this.findOne(workoutId);
   }
+
+  async removeExerciseFromWorkout(
+    workoutId: string,
+    exerciseId: number,
+  ): Promise<Workout> {
+    const workout = await this.findOne(workoutId);
+    if (!workout) {
+      throw new NotFoundException(`Workout with ID ${workoutId} not found`);
+    }
+
+    const exercise = await this.excerciseRepository.findOne({
+      where: { id: exerciseId },
+    });
+    if (!exercise) {
+      throw new NotFoundException(`Exercise with ID ${exerciseId} not found`);
+    }
+
+    workout.exercises = workout.exercises.filter((ex) => ex.id !== exerciseId);
+
+    return this.workoutRepository.save(workout);
+  }
 }

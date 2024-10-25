@@ -7,6 +7,7 @@ import { ExcercisesModule } from './excercises/excercises.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { WorkoutModule } from './workout/workout.module';
+import { Excercise } from './excercises/entities/excercise.entity';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { WorkoutModule } from './workout/workout.module';
         },
       },
     }),
+    TypeOrmModule.forFeature([Excercise]),
     ExcercisesModule,
     AuthModule,
     UserModule,

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -69,5 +70,17 @@ export class WorkoutController {
       exerciseId,
       updateExcerciseDto,
     );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Remove an exercise from a workout' })
+  @ApiParam({ name: 'workoutId', description: 'ID of the workout' })
+  @ApiParam({ name: 'exerciseId', description: 'ID of the exercise' })
+  @Delete(':workoutId/exercises/:exerciseId')
+  removeExerciseFromWorkout(
+    @Param('workoutId') workoutId: string,
+    @Param('exerciseId') exerciseId: number,
+  ) {
+    return this.workoutService.removeExerciseFromWorkout(workoutId, exerciseId);
   }
 }
