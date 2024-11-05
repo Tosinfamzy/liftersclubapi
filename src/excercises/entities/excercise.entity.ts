@@ -55,7 +55,7 @@ export class Excercise {
   @Column()
   instructions: string;
 
-  @Column()
+  @Column({ nullable: true })
   video: string;
 
   @ManyToMany(() => Workout, (workout) => workout.exercises)

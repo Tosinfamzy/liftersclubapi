@@ -1,3 +1,3 @@
-type difficulty = 'BEGINNER' | 'INTERMEDIATE' | 'EXPERT';
+type difficulty = 'easy' | 'medium' | 'hard';
 
 export default difficulty;
