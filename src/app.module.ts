@@ -21,12 +21,12 @@ import { Excercise } from './excercises/entities/excercise.entity';
       database: process.env.DB_NAME,
       autoLoadEntities: true, // models will be loaded automatically
       synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
-      ssl: true,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
+      ssl: false,
+      //   extra: {
+      //     ssl: {
+      //       rejectUnauthorized: false,
+      //     },
+      //   },
     }),
     TypeOrmModule.forFeature([Excercise]),
     ExcercisesModule,

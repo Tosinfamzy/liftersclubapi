@@ -1,6 +1,6 @@
 import difficulty from 'src/helpers/difficulty';
 import { excerciseType } from 'src/helpers/excerciseType';
-import { MUSCLE } from 'src/helpers/muscle';
+// import { MUSCLE } from 'src/helpers/muscle';
 import { Workout } from 'src/workout/entities/workout.entity';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -11,37 +11,11 @@ export class Excercise {
   @Column()
   name: string;
 
-  @Column({
-    type: 'enum',
-    enum: [
-      'cardio',
-      'olympic_weightlifting',
-      'plyometrics',
-      'powerlifting',
-      'strength',
-      'strongman',
-    ],
-  })
+  @Column({ nullable: true })
   type: excerciseType;
 
-  @Column({
-    type: 'enum',
-    enum: [
-      'abs',
-      'adductors',
-      'abductors',
-      'biceps',
-      'calves',
-      'chest',
-      'glutes',
-      'hamstrings',
-      'lats',
-      'quads',
-      'traps',
-      'triceps',
-    ],
-  })
-  muscle: MUSCLE;
+  @Column({ nullable: true })
+  muscle: string;
 
   @Column()
   equipment: string;

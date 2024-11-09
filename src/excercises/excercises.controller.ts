@@ -20,8 +20,8 @@ export class ExcercisesController {
   @ApiOperation({ summary: 'Create a new exercise' })
   @ApiResponse({ status: 201, description: 'Exercise created successfully' })
   @Post()
-  create(@Body() createExcerciseDto: CreateExcerciseDto) {
-    return this.excercisesService.create(createExcerciseDto);
+  create(@Body() createExcerciseDto: CreateExcerciseDto[]) {
+    return this.excercisesService.createMany(createExcerciseDto);
   }
 
   @ApiOperation({ summary: 'List all exercises' })
@@ -30,7 +30,8 @@ export class ExcercisesController {
   findAll() {
     return this.excercisesService.findAll();
   }
-
+  @ApiOperation({ summary: 'Get single exercise' })
+  @ApiResponse({ status: 200, description: 'Get single exercise' })
   @Get()
   findOne(@Query('name') name: string) {
     return this.excercisesService.findOne(name);
@@ -50,6 +51,7 @@ export class ExcercisesController {
   ) {
     return this.excercisesService.update(name, updateExcerciseDto);
   }
+
   @ApiOperation({ summary: 'Get exercises by muscle' })
   @ApiParam({ name: 'muscle', description: 'Muscle group of the exercises' })
   @Get('muscle/:muscle')

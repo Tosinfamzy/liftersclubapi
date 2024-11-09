@@ -11,9 +11,15 @@ export class ExcercisesService {
     @InjectRepository(Excercise)
     private readonly excersiceRepository: Repository<Excercise>,
   ) {}
+
   create(@Body() createExcerciseDto: CreateExcerciseDto) {
     const exercise = this.excersiceRepository.create(createExcerciseDto);
     return this.excersiceRepository.save(exercise);
+  }
+
+  createMany(createExcerciseDto: CreateExcerciseDto[]) {
+    const exercises = this.excersiceRepository.create(createExcerciseDto);
+    return this.excersiceRepository.save(exercises);
   }
 
   findAll() {
