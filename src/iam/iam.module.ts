@@ -7,18 +7,27 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import jwtConfig from './jwt.config';
 import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
+import { AuthenticationGuard } from './authentication/guards/authentication/authentication.guard';
+import { AccessTokenGuard } from './authentication/guards/access-token/access-token.guard';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
     JwtModule.registerAsync(jwtConfig.asProvider()),
+    ConfigModule.forFeature(jwtConfig),
   ],
   providers: [
     {
       provide: HashingService,
       useClass: BcryptService,
     },
+    {
+      provide: 'APP_GUARD',
+      useClass: AuthenticationGuard,
+    },
     BcryptService,
+    AccessTokenGuard,
     AuthenticationService,
   ],
   controllers: [AuthenticationController],
