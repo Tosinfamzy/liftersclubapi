@@ -4,10 +4,10 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ExcercisesModule } from './excercises/excercises.module';
-import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { WorkoutModule } from './workout/workout.module';
 import { Excercise } from './excercises/entities/excercise.entity';
+import { IamModule } from './iam/iam.module';
 
 @Module({
   imports: [
@@ -30,9 +30,9 @@ import { Excercise } from './excercises/entities/excercise.entity';
     }),
     TypeOrmModule.forFeature([Excercise]),
     ExcercisesModule,
-    AuthModule,
     UserModule,
     WorkoutModule,
+    IamModule,
   ],
   controllers: [AppController],
   providers: [AppService],
