@@ -26,4 +26,7 @@ export class Workout {
   @ManyToMany(() => Excercise)
   @JoinTable()
   exercises: Excercise[];
+
+  @Column({ default: false })
+  isComplete: boolean;
 }

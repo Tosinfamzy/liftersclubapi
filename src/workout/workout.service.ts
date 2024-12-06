@@ -184,4 +184,14 @@ export class WorkoutService {
 
     return this.findOne(workoutId);
   }
+
+  async markAsComplete(id: string): Promise<Workout> {
+    const workout = await this.findOne(id);
+    if (!workout) {
+      throw new NotFoundException(`Workout with ID ${id} not found`);
+    }
+
+    workout.isComplete = true;
+    return this.workoutRepository.save(workout);
+  }
 }
